@@ -7,7 +7,7 @@
 
 		<PackageId>readq1.PowerCollections</PackageId>
 		<RepositoryUrl>https://github.com/readq1/DevTools_lab02-01</RepositoryUrl>
-		<Version>0.0.2-beta</Version>
+		<Version>0.0.3-beta</Version>
 
 		<Authors>Русалёв Михаил</Authors>
 		<ProductName>readq1 PowerCollections</ProductName>
