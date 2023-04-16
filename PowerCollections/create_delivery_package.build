@@ -1,0 +1,39 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+    <IgnoreTestsResults>false</IgnoreTestsResults>
+    <PackageId>readq1.PowerCollections</PackageId>
+    <FileVersion>Version.txt</FileVersion>
+</PropertyGroup>
+
+<Import Project="MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+<Target Name="Build">
+    <Exec Command="dotnet test" ContinueOnError="false"/>
+    <Exec Command="docfx docfx_project\docfx.json"/>
+
+    <Version VersionFile="$(FileVersion)" BuildType="Increment">
+        <Output TaskParameter="Build" PropertyName="Build"/>
+        <Output TaskParameter="Minor" PropertyName="Minor"/>
+        <Output TaskParameter="Major" PropertyName="Major"/>
+    </Version>
+    <Exec Command="dotnet pack -c Release -p:PackageVersion=$(Major).$(Minor).$(Build)"/>
+
+    <ItemGroup>
+        <Bin Include="PowerCollections\bin\Debug\$(PackageId).$(Major).$(Minor).$(Build)-beta.nupkg" />
+        <Docs Include="docfx_project\_site\**\*.*" />
+        <Code Include="PowerCollections\**"
+            Exclude="PowerCollections\bin\**;PowerCollections\obj\**;PowerCollections\.vs\**"
+            Condition="true" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PackDirectory>$(PackageId)($([System.DateTime]::Now.ToString(dd.MM.yyyy)))$(Major).$(Minor).$(Build)</PackDirectory>
+    </PropertyGroup>
+
+    <Copy SourceFiles="@(Bin)" DestinationFolder="$(PackDirectory)\bin\%(RecursiveDir)" />
+    <Copy SourceFiles="@(Docs)" DestinationFolder="$(PackDirectory)\_site\%(RecursiveDir)" />
+    <Copy SourceFiles="@(Code)" DestinationFolder="$(PackDirectory)\src\%(RecursiveDir)" Condition="true" />
+
+    <ZipDirectory SourceDirectory="$(PackDirectory)" Overwrite="true" DestinationFile="$(MSBuildProjectDirectory)\$(PackDirectory).zip" />
+</Target>
+</Project>
