@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsoleApp1/1.0.0": {
+        "dependencies": {
+          "readq1.PowerCollections": "0.0.3-beta"
+        },
+        "runtime": {
+          "ConsoleApp1.dll": {}
+        }
+      },
+      "readq1.PowerCollections/0.0.3-beta": {
+        "runtime": {
+          "lib/netstandard2.1/PowerCollections.dll": {
+            "assemblyVersion": "1.0.8504.41956",
+            "fileVersion": "1.0.8504.41956"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleApp1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "readq1.PowerCollections/0.0.3-beta": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jUvnZPDn75M5ZRGFQn4ZhlTutv+yNeB70t7arBRbZU3Tx8NOQ4T38CwZpf/0WtrJkw5l6shm8fsHDv7iqDsC4g==",
+      "path": "readq1.powercollections/0.0.3-beta",
+      "hashPath": "readq1.powercollections.0.0.3-beta.nupkg.sha512"
+    }
+  }
+}

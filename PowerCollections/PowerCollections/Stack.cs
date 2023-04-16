@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PowerCollections
+namespace Wintellect.PowerCollections
 {
     public class Stack<T>
     {

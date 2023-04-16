@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NvR0VPPcPu6ET+PfIcUelK6mKGqkwNqrpiscbdAo2gx8jJa23EzFQYYV3M7CEMkYvPgYvBWVl6Q3HrTKblkdsg==",
+  "success": true,
+  "projectFilePath": "R:\\ProgramProjects\\keril\\chmo\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\guruz\\.nuget\\packages\\readq1.powercollections\\0.0.3-beta\\readq1.powercollections.0.0.3-beta.nupkg.sha512"
+  ],
+  "logs": []
+}
