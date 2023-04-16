@@ -22,9 +22,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             Stack<int> stack = new Stack<int>(10);
             Assert.IsTrue(stack.IsEmpty);
-            //stack.Push(4);
-            //stack.Push(3);
-            //stack.Push(2);
+            stack.Push(4);
+            stack.Push(3);
+            stack.Push(2);
             Assert.IsFalse(stack.IsEmpty);
         }
         [TestMethod]
