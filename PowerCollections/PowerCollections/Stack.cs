@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PowerCollections
+namespace Wintellect.PowerCollections
 {
     public class Stack<T>
     {
@@ -13,7 +13,7 @@ namespace PowerCollections
         {
             items = new T[n];
         }
-        public Stack(int Capacity = 100)
+        public Stack(int Capacity)
         {
             items = new T[Capacity];
         }
