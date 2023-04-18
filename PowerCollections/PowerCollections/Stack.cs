@@ -13,7 +13,7 @@ namespace Wintellect.PowerCollections
         {
             items = new T[n];
         }
-        public Stack(int Capacity)
+        public Stack(int Capacity = 10)
         {
             items = new T[Capacity];
         }
