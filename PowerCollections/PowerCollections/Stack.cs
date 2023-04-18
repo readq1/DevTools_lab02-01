@@ -11,7 +11,7 @@ namespace Wintellect.PowerCollections
         const int n = 10;
         public Stack()
         {
-            i= new T[n];
+            items = new T[n];
         }
         public Stack(int Capacity = 10)
         {
