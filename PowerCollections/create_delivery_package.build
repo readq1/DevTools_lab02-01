@@ -21,7 +21,7 @@
     <Exec Command="dotnet pack -c $(Configuration) -p:PackageVersion=$(Major).$(Minor).$(Build)"/>
 
     <ItemGroup>
-        <Bin Include="PowerCollections\bin\$(Configuration)\$(PackageId).$(Major).$(Minor).$(Build)-beta.nupkg" />
+        <Bin Include="PowerCollections\bin\$(Configuration)\$(PackageId).$(Major).$(Minor).$(Build).nupkg" />
         <Docs Include="docfx_project\_site\**\*.*" />
         <Code Include="PowerCollections\**"
             Exclude="PowerCollections\bin\**;PowerCollections\obj\**;PowerCollections\.vs\**"
