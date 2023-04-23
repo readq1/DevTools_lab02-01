@@ -5,6 +5,7 @@
     <AddSourceCode>true</AddSourceCode>
     <PackageId>readq1.PowerCollections</PackageId>
     <FileVersion>Version.txt</FileVersion>
+    <Suffix>-beta</Suffix>
 </PropertyGroup>
 
 <Import Project="MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
@@ -18,10 +19,10 @@
         <Output TaskParameter="Minor" PropertyName="Minor"/>
         <Output TaskParameter="Major" PropertyName="Major"/>
     </Version>
-    <Exec Command="dotnet pack -c $(Configuration) -p:PackageVersion=$(Major).$(Minor).$(Build)"/>
+    <Exec Command="dotnet pack -c $(Configuration) -p:PackageVersion=$(Major).$(Minor).$(Build)$(Suffix)"/>
 
     <ItemGroup>
-        <Bin Include="PowerCollections\bin\$(Configuration)\$(PackageId).$(Major).$(Minor).$(Build)-beta.nupkg" />
+        <Bin Include="PowerCollections\bin\$(Configuration)\$(PackageId).$(Major).$(Minor).$(Build)$(Suffix).nupkg" />
         <Docs Include="docfx_project\_site\**\*.*" />
         <Code Include="PowerCollections\**"
             Exclude="PowerCollections\bin\**;PowerCollections\obj\**;PowerCollections\.vs\**"
@@ -29,7 +30,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <PackDirectory>$(PackageId)($([System.DateTime]::Now.ToString(dd.MM.yyyy)))$(Major).$(Minor).$(Build)</PackDirectory>
+        <PackDirectory>$(PackageId)($([System.DateTime]::Now.ToString(dd.MM.yyyy)))$(Major).$(Minor).$(Build)$(Suffix)</PackDirectory>
     </PropertyGroup>
 
     <Copy SourceFiles="@(Bin)" DestinationFolder="$(PackDirectory)\bin\%(RecursiveDir)" />
