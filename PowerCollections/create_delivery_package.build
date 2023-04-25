@@ -1,0 +1,42 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+    <IgnoreTestsResults>false</IgnoreTestsResults>
+    <Configuration>Debug</Configuration>
+    <AddSourceCode>true</AddSourceCode>
+    <PackageId>readq1.PowerCollections</PackageId>
+    <FileVersion>Version.txt</FileVersion>
+    <Suffix>-beta</Suffix>
+</PropertyGroup>
+
+<Import Project="MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+<Target Name="Build">
+    <Exec Command="dotnet test -c $(Configuration)" ContinueOnError="$(IgnoreTestsResults)"/>
+    <Exec Command="docfx -c $(Configuration) docfx_project\docfx.json"/>
+
+    <Version VersionFile="$(FileVersion)" BuildType="Increment">
+        <Output TaskParameter="Build" PropertyName="Build"/>
+        <Output TaskParameter="Minor" PropertyName="Minor"/>
+        <Output TaskParameter="Major" PropertyName="Major"/>
+    </Version>
+    <Exec Command="dotnet pack -c $(Configuration) -p:PackageVersion=$(Major).$(Minor).$(Build)$(Suffix)"/>
+
+    <ItemGroup>
+        <Bin Include="PowerCollections\bin\$(Configuration)\$(PackageId).$(Major).$(Minor).$(Build)$(Suffix).nupkg" />
+        <Docs Include="docfx_project\_site\**\*.*" />
+        <Code Include="PowerCollections\**"
+            Exclude="PowerCollections\bin\**;PowerCollections\obj\**;PowerCollections\.vs\**"
+            Condition="$(AddSourceCode)" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PackDirectory>$(PackageId)($([System.DateTime]::Now.ToString(dd.MM.yyyy)))$(Major).$(Minor).$(Build)$(Suffix)</PackDirectory>
+    </PropertyGroup>
+
+    <Copy SourceFiles="@(Bin)" DestinationFolder="$(PackDirectory)\bin\%(RecursiveDir)" />
+    <Copy SourceFiles="@(Docs)" DestinationFolder="$(PackDirectory)\_site\%(RecursiveDir)" />
+    <Copy SourceFiles="@(Code)" DestinationFolder="$(PackDirectory)\src\%(RecursiveDir)" Condition="$(AddSourceCode)" />
+
+    <ZipDirectory SourceDirectory="$(PackDirectory)" Overwrite="true" DestinationFile="$(MSBuildProjectDirectory)\$(PackDirectory).zip" />
+</Target>
+</Project>
